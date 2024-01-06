@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const apiClient= axios.create(
     {
-        baseURL: "http://localhost:8080"
+        baseURL: "http://localhost:8080",
+        withCredentials: true
     }
 );
 
@@ -31,7 +32,7 @@ export const apiClient= axios.create(
  = (username, id)=> apiClient.put(`/Customers/${username}/Articles/${id}`) 
 
  export const retrieveSingleArticleForCustomer
- = (username, id)=> apiClient.get(`/Articles/${id}`) 
+ = (id)=> apiClient.get(`/Articles/${id}`) 
 
  export const createCustomer
  = (customer)=> apiClient.post(`/Customers`, customer ,{
@@ -46,6 +47,7 @@ export const apiClient= axios.create(
     headers:
     {
         Authorization: "Basic " + window.btoa("Harsh" + ":" + "password")
+        
     }
  }) 
 
@@ -55,8 +57,8 @@ export const apiClient= axios.create(
     {
         Authorization: token
     }
- }) 
-
+ })
+ 
  export const retrieveSingleCustomer
  = (username, token)=> apiClient.get(`/Customers/${username}`,{
     headers:

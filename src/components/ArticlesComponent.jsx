@@ -67,23 +67,25 @@ export default function ArticlesComponent() {
 //     "name": "Amazing Problems"
 //     }
 // ];
- function buyArticle(id)
+ async function buyArticle(id)
   {
     const newArr= customerArticles.map((response)=> response.id)
     if(!newArr.includes(id))
     { 
-      retrieveSingleArticleForCustomer(userName, id)
+      await retrieveSingleArticleForCustomer(id)
       .then((response)=> {
         //console.log("before")
         setCustomerArticles(customerArticles.concat(response.data))
       })
       .catch((error)=>console.log(error))
-      buyArticleforCustomer(userName, id)
+      await buyArticleforCustomer(userName, id)
       .then((response)=> {
         console.log(response)
+        
       })
       .catch((error)=>console.log(error))
     }
+    initailizeArticles()
   }
 
 

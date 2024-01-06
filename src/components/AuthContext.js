@@ -18,11 +18,13 @@ export default function AuthProvider({ children }) {
 
     async function login(username, password, usertype) {
 
-        const baToken = "Basic " + window.btoa("Harsh" + ":" + "password")
+        const baToken = "Basic " + window.btoa("username" + ":" + "password")
+        //console.log(baToken)
         if(usertype=="seller")
         {try{
            
             const response = await retrieveSingleSeller(username, baToken)
+            console.log(response)
             if(response.data.password===password)
             {
                 console.log("pass")
