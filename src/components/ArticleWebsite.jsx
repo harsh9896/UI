@@ -1,27 +1,22 @@
-import React from 'react'
-import { BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
-import LoginComponent from './LoginComponent';
-import ArticlesComponent from './ArticlesComponent';
-import MyArticlesForCustomer from './MyArticlesForCustomer';
-import MyArticlesForSeller from './MyArticlesForSeller';
-import ErrorComponent from './ErrorComponent';
-import HeaderComponent from './HeaderComponent';
-import AuthProvider, { useAuth } from './AuthContext';
-import SingleArticle from './SingleArticle';
-import Signup from './Signup';
-
-
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import LoginComponent from "./LoginComponent";
+import ArticlesComponent from "./ArticlesComponent";
+import MyArticlesForCustomer from "./MyArticlesForCustomer";
+import MyArticlesForSeller from "./MyArticlesForSeller";
+import ErrorComponent from "./ErrorComponent";
+import HeaderComponent from "./HeaderComponent";
+import AuthProvider, { useAuth } from "./AuthContext";
+import SingleArticle from "./SingleArticle";
+import Signup from "./Signup";
 
 export default function ArticleWebsite() {
+  function AuthenticatedRoute({ children }) {
+    const authContext = useAuth();
 
-  function AuthenticatedRoute({children}) {
-    const authContext = useAuth()
-    
-    
-    if(authContext.isAuthenticated)
-        return children
-  
-    return <Navigate to="/" />
+    if (authContext.isAuthenticated) return children;
+
+    return <Navigate to="/" />;
   }
 
   // const AuthContext= useAuth()
@@ -41,41 +36,56 @@ export default function ArticleWebsite() {
 
   return (
     <div>
-        <AuthProvider>
+      <AuthProvider>
         <BrowserRouter>
-        <HeaderComponent></HeaderComponent>
-            <Routes>
-                <Route path="" element={<LoginComponent/>}/>
-                <Route path="/login" element={<LoginComponent/>}/>
-                <Route path="/signup" element={<Signup/>}/>
-                <Route path="/Articles/:username" element={
+          <HeaderComponent></HeaderComponent>
+          <Routes>
+            <Route path="" element={<LoginComponent />} />
+            <Route path="/login" element={<LoginComponent />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/Articles/:username"
+              element={
                 <AuthenticatedRoute>
-                <ArticlesComponent/>
+                  <ArticlesComponent />
                 </AuthenticatedRoute>
-                }/>
-                <Route path="/MyArticlesForCustomer" element={
+              }
+            />
+            <Route
+              path="/MyArticlesForCustomer"
+              element={
                 <AuthenticatedRoute>
-                  <MyArticlesForCustomer/>
-                  </AuthenticatedRoute>
-                }/>
-                <Route path="/MyArticlesForSeller/:username" element={
-                <AuthenticatedRoute>
-                <MyArticlesForSeller/>
+                  <MyArticlesForCustomer />
                 </AuthenticatedRoute>
-              }/>
-              <Route path="/Article/:id" element={
+              }
+            />
+            <Route
+              path="/MyArticlesForSeller/:username"
+              element={
                 <AuthenticatedRoute>
-                  <SingleArticle/>
-                  </AuthenticatedRoute>
-                }/>
-                <Route path="*" element={
-                <AuthenticatedRoute>
-                <ErrorComponent/>
+                  <MyArticlesForSeller />
                 </AuthenticatedRoute>
-              }/>
-            </Routes>
+              }
+            />
+            <Route
+              path="/Article/:id"
+              element={
+                <AuthenticatedRoute>
+                  <SingleArticle />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <AuthenticatedRoute>
+                  <ErrorComponent />
+                </AuthenticatedRoute>
+              }
+            />
+          </Routes>
         </BrowserRouter>
-        </AuthProvider>
+      </AuthProvider>
     </div>
-  )
+  );
 }

@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function ErrorComponent() {
-  return (
-    <div>ErrorComponent</div>
-  )
+  return <div>ErrorComponent</div>;
 }

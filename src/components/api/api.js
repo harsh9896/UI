@@ -1,6 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 export const apiClient= axios.create(
     {
@@ -40,7 +38,7 @@ export const apiClient= axios.create(
  = (customer)=> apiClient.post(`/Customers`, customer ,{
     headers:
     {
-        Authorization: "Basic " + window.btoa("Harsh" + ":" + "password")
+        Authorization: "Basic " + window.btoa("username" + ":" + "password")
     }
  }) 
 
@@ -48,7 +46,7 @@ export const apiClient= axios.create(
  = (seller)=> apiClient.post(`/Sellers`, seller,{
     headers:
     {
-        Authorization: "Basic " + window.btoa("Harsh" + ":" + "password")
+        Authorization: "Basic " + window.btoa("username" + ":" + "password")
         
     }
  }) 
