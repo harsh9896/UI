@@ -1,4 +1,6 @@
+import { type } from "@testing-library/user-event/dist/type";
 import axios from "axios";
+import { json } from "react-router-dom";
 
 export const apiClient= axios.create(
     {
@@ -66,6 +68,9 @@ export const apiClient= axios.create(
         Authorization: token
     }
  }) 
+
+ export const startPayment
+ = (username, data)=> apiClient.post(`/payments/${username}/${data}`) 
 
  export const basicAuthService
  = (token)=> apiClient.get(`/basicAuth`,{
