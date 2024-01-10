@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import React, { useState } from "react";
+import React from "react";
 import { createCustomer, createSeller } from "./api/api";
 import { useNavigate } from "react-router-dom";
 

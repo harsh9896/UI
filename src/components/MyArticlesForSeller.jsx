@@ -71,6 +71,13 @@ export default function MyArticlesForSeller() {
               >
                 Delete
               </button>
+              <button
+                type="button"
+                className="btn btn-success m-3"
+                onClick={() => navigate(`/uploadFile/${article.id}`)}
+              >
+                Upload
+              </button>
             </div>
           </div>
         ))}

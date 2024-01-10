@@ -39,9 +39,32 @@ export default function MyArticlesForCustomer() {
                   Price {article.price}
                 </h6>
                 <p className="card-text">{article.description}</p>
-                <button type="submit" className="btn btn-primary">
-                  Open
-                </button>
+                <a
+                  href={article.viewURL}
+                  download={
+                    (article.attachment != null &&
+                      article.attachment.fileName) ||
+                    ""
+                  }
+                  target="_blank"
+                >
+                  <button type="button" className="btn btn-success mx-3">
+                    View
+                  </button>
+                </a>
+                <a
+                  href={article.downloadURL}
+                  download={
+                    (article.attachment != null &&
+                      article.attachment.fileName) ||
+                    ""
+                  }
+                  target="_blank"
+                >
+                  <button type="button" className="btn btn-primary mx-3">
+                    Download
+                  </button>
+                </a>
               </div>
             </div>
           ))}

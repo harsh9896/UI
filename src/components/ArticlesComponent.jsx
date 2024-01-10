@@ -148,13 +148,34 @@ export default function ArticlesComponent() {
                 (customerArticles
                   .map((article) => article.id)
                   .includes(article.id) && (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={(event) => payment(article.id)}
-                  >
-                    open
-                  </button>
+                  <>
+                    <a
+                      href={article.viewURL}
+                      download={
+                        (article.attachment != null &&
+                          article.attachment.fileName) ||
+                        ""
+                      }
+                      target="_blank"
+                    >
+                      <button type="button" className="btn btn-success mx-3">
+                        View
+                      </button>
+                    </a>
+                    <a
+                      href={article.downloadURL}
+                      download={
+                        (article.attachment != null &&
+                          article.attachment.fileName) ||
+                        ""
+                      }
+                      target="_blank"
+                    >
+                      <button type="button" className="btn btn-primary mx-3">
+                        Download
+                      </button>
+                    </a>
+                  </>
                 ))}
             </div>
           </div>

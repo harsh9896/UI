@@ -9,6 +9,7 @@ import HeaderComponent from "./HeaderComponent";
 import AuthProvider, { useAuth } from "./AuthContext";
 import SingleArticle from "./SingleArticle";
 import Signup from "./Signup";
+import FileUploadComponent from "./FileUploadComponent";
 
 export default function ArticleWebsite() {
   function AuthenticatedRoute({ children }) {
@@ -56,6 +57,14 @@ export default function ArticleWebsite() {
               element={
                 <AuthenticatedRoute>
                   <MyArticlesForCustomer />
+                </AuthenticatedRoute>
+              }
+            />
+            <Route
+              path="/uploadFile/:id"
+              element={
+                <AuthenticatedRoute>
+                  <FileUploadComponent />
                 </AuthenticatedRoute>
               }
             />
